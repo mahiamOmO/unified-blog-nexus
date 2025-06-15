@@ -2,10 +2,12 @@
 import React from "react";
 import BlogFeed from "@/components/BlogFeed";
 import TypingHeader from "@/components/TypingHeader";
+import Navbar from "@/components/Navbar";
 
 const Index = () => {
   return (
     <div className="min-h-screen w-full px-0 md:px-10 bg-background flex flex-col items-center">
+      <Navbar />
       <TypingHeader text="Mahia Momo Writes" />
       <div className="max-w-screen-xl w-full mx-auto">
         <BlogFeed />
@@ -17,4 +19,3 @@ const Index = () => {
   );
 };
 export default Index;
-
