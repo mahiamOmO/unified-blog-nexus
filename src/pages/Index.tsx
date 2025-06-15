@@ -19,17 +19,7 @@ const Index = () => {
         />
         <div className="relative z-10 w-full flex flex-col items-center">
           <TypingHeader text="Mahia Momo Writes" />
-
-          {/* Illustration */}
-          <div className="w-full flex justify-center mb-6 mt-[-0.5rem]">
-            <img
-              src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?auto=format&fit=cover&w=900&q=80"
-              alt="Woman writing on laptop"
-              className="rounded-3xl shadow-xl border border-border object-cover w-full md:w-4/5 lg:w-2/3 max-h-72 md:max-h-80 transition-all duration-500"
-              loading="lazy"
-              style={{ background: "#faf6fa", objectPosition: "center 40%" }}
-            />
-          </div>
+          {/* Illustration removed */}
         </div>
       </div>
       <div className="max-w-screen-xl w-full mx-auto">
@@ -43,3 +33,4 @@ const Index = () => {
   );
 };
 export default Index;
+
