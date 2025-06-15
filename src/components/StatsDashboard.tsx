@@ -1,4 +1,3 @@
-
 import React from "react";
 import { trendingUp, fileText, star } from "lucide-react";
 
@@ -15,6 +14,9 @@ type Props = {
   };
 };
 
+const colorfulNumberClass =
+  "text-3xl font-playfair font-bold bg-gradient-to-r from-pink-500 via-yellow-400 via-blue-600 via-purple-500 to-teal-400 bg-clip-text text-transparent";
+
 const StatsDashboard = ({
   totalPosts,
   totalViews,
@@ -24,19 +26,19 @@ const StatsDashboard = ({
 }: Props) => (
   <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
     <div className="bg-card shadow rounded-xl px-4 py-4 flex flex-col items-center animate-fade-in">
-      <span className="text-3xl font-playfair font-bold">{totalPosts}</span>
+      <span className={colorfulNumberClass}>{totalPosts}</span>
       <span className="uppercase text-xs mt-1 text-muted-foreground tracking-wide">Total Posts</span>
     </div>
     <div className="bg-card shadow rounded-xl px-4 py-4 flex flex-col items-center animate-fade-in">
-      <span className="text-3xl font-playfair font-bold">{totalViews}</span>
+      <span className={colorfulNumberClass}>{totalViews}</span>
       <span className="uppercase text-xs mt-1 text-muted-foreground tracking-wide">Views</span>
     </div>
     <div className="bg-card shadow rounded-xl px-4 py-4 flex flex-col items-center animate-fade-in">
-      <span className="text-3xl font-playfair font-bold">{totalReactions}</span>
+      <span className={colorfulNumberClass}>{totalReactions}</span>
       <span className="uppercase text-xs mt-1 text-muted-foreground tracking-wide">Reactions</span>
     </div>
     <div className="bg-card shadow rounded-xl px-4 py-4 flex flex-col items-center animate-fade-in">
-      <span className="text-3xl font-playfair font-bold">{wordcount}</span>
+      <span className={colorfulNumberClass}>{wordcount}</span>
       <span className="uppercase text-xs mt-1 text-muted-foreground tracking-wide">Word Count</span>
     </div>
     <div className="bg-card shadow rounded-xl px-4 py-4 flex flex-col items-center animate-fade-in">
