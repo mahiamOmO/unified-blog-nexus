@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, useMemo } from "react";
 import ArticleCard from "./ArticleCard";
 import StatsDashboard from "./StatsDashboard";
@@ -75,14 +74,27 @@ type NormalizedPost = {
   wordcount?: number;
 };
 
+// Helper: ensure tags is always string[]
+function toTagArray(val: string[] | string | undefined): string[] {
+  if (Array.isArray(val)) return val.map(t => String(t));
+  if (typeof val === "string") {
+    return val
+      .split(",")
+      .map(t => t.trim())
+      .filter(Boolean);
+  }
+  return [];
+}
+
 function normalizeDevto(post: RawDevToPost): NormalizedPost {
+  // Dev.to can send tags as array or comma string (edge case), defensively handle both
   return {
     id: `devto-${post.id}`,
     platform: "devto",
     title: post.title,
     url: post.url,
     date: post.published_at.slice(0, 10),
-    tags: post.tags,
+    tags: toTagArray(post.tags),
     summary: post.description,
     views: post.page_views_count,
     reactions: post.positive_reactions_count,
@@ -98,7 +110,7 @@ function normalizeMedium(post: any): NormalizedPost {
     title: post.title,
     url: post.url,
     date: post.published_at,
-    tags: post.tags,
+    tags: toTagArray(post.tags),
     summary: post.description,
     views: post.page_views_count,
     reactions: post.positive_reactions_count,
@@ -114,7 +126,7 @@ function normalizeHashnode(post: any): NormalizedPost {
     title: post.title,
     url: post.url,
     date: post.published_at,
-    tags: post.tags,
+    tags: toTagArray(post.tags),
     summary: post.description,
     views: post.page_views_count,
     reactions: post.positive_reactions_count,
@@ -167,9 +179,12 @@ const BlogFeed = () => {
       localStorage.setItem("readLater", JSON.stringify(Array.from(bookmarks)));
   }, [bookmarks]);
 
+  // Defensive: make sure post.tags is always an array in tag extraction. Futureproof!
   const tags = useMemo(() => {
     const tagSet = new Set<string>();
-    posts.forEach(post => post.tags.forEach(tag => tagSet.add(tag)));
+    posts.forEach(post => {
+      (Array.isArray(post.tags) ? post.tags : []).forEach(tag => tagSet.add(tag));
+    });
     return Array.from(tagSet);
   }, [posts]);
 
